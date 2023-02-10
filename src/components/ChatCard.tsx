@@ -16,7 +16,7 @@ const ChatCard: React.FC<Props> = ({chat}) => {
 
   const handleCardPress = useCallback(() => {
     // @ts-expect-error
-    navigation.navigate(NavigationKeys.ChatScreen);
+    navigation.navigate(NavigationKeys.ChatScreen, {chat});
   }, []);
 
   return (
