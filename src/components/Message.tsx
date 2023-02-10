@@ -25,7 +25,7 @@ const Message: React.FC<Props> = ({message}) => {
 
 const styles = StyleSheet.create({
   container: {
-    maxWidth: '60%',
+    maxWidth: '70%',
     backgroundColor: colors.greyCell,
     marginVertical: indent.xxs,
     padding: indent.xs,
