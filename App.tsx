@@ -7,9 +7,14 @@
 
 import React from 'react';
 import {SafeAreaView} from 'react-native';
+import Navigation from './src/navigation/Navigation';
 
 function App(): JSX.Element {
-  return <SafeAreaView></SafeAreaView>;
+  return (
+    <SafeAreaView>
+      <Navigation />
+    </SafeAreaView>
+  );
 }
 
 export default App;
