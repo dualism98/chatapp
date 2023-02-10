@@ -6,15 +6,10 @@
  */
 
 import React from 'react';
-import {SafeAreaView} from 'react-native';
 import Navigation from './src/navigation/Navigation';
 
 function App(): JSX.Element {
-  return (
-    <SafeAreaView>
-      <Navigation />
-    </SafeAreaView>
-  );
+  return <Navigation />;
 }
 
 export default App;

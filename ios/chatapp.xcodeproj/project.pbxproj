@@ -13,10 +13,10 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-chatapp-chatappTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-chatapp-chatappTests.a */; };
+		7BF35E53C0644369A5876C22 /* Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 281DBC3285294571A66A9FD7 /* Semibold.otf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		91C84E73EF434C73BB07F1E5 /* Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 80848AA173C6484DB3CA39EF /* Bold.otf */; };
 		AF28556B08D44011B3FD4AE0 /* Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 32A2FEA7F4D845319E6101B4 /* Regular.otf */; };
-		7BF35E53C0644369A5876C22 /* Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 281DBC3285294571A66A9FD7 /* Semibold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,16 +40,16 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = chatapp/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = chatapp/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-chatapp-chatappTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-chatapp-chatappTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		281DBC3285294571A66A9FD7 /* Semibold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Semibold.otf; path = ../src/assets/fonts/Semibold.otf; sourceTree = "<group>"; };
+		32A2FEA7F4D845319E6101B4 /* Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Regular.otf; path = ../src/assets/fonts/Regular.otf; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-chatapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chatapp.debug.xcconfig"; path = "Target Support Files/Pods-chatapp/Pods-chatapp.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-chatapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chatapp.release.xcconfig"; path = "Target Support Files/Pods-chatapp/Pods-chatapp.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-chatapp-chatappTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chatapp-chatappTests.debug.xcconfig"; path = "Target Support Files/Pods-chatapp-chatappTests/Pods-chatapp-chatappTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-chatapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-chatapp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		80848AA173C6484DB3CA39EF /* Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Bold.otf; path = ../src/assets/fonts/Bold.otf; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = chatapp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-chatapp-chatappTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chatapp-chatappTests.release.xcconfig"; path = "Target Support Files/Pods-chatapp-chatappTests/Pods-chatapp-chatappTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		80848AA173C6484DB3CA39EF /* Bold.otf */ = {isa = PBXFileReference; name = "Bold.otf"; path = "../src/assets/fonts/Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		32A2FEA7F4D845319E6101B4 /* Regular.otf */ = {isa = PBXFileReference; name = "Regular.otf"; path = "../src/assets/fonts/Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		281DBC3285294571A66A9FD7 /* Semibold.otf */ = {isa = PBXFileReference; name = "Semibold.otf"; path = "../src/assets/fonts/Semibold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +144,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		A41B276537374BEC8082767B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				80848AA173C6484DB3CA39EF /* Bold.otf */,
+				32A2FEA7F4D845319E6101B4 /* Regular.otf */,
+				281DBC3285294571A66A9FD7 /* Semibold.otf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,17 +164,6 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		A41B276537374BEC8082767B /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				80848AA173C6484DB3CA39EF /* Bold.otf */,
-				32A2FEA7F4D845319E6101B4 /* Regular.otf */,
-				281DBC3285294571A66A9FD7 /* Semibold.otf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
