@@ -6,7 +6,6 @@ import {indent} from '../theme/layout';
 import SvgIcon from './ui/SvgIcon';
 
 const MessageInput: React.FC = () => {
-
   return (
     <View style={styles.container}>
       <TextInput
@@ -16,7 +15,9 @@ const MessageInput: React.FC = () => {
         style={styles.input}
         multiline
       />
-      <TouchableOpacity style={styles.sendButton}>
+      <TouchableOpacity
+        style={styles.sendButton}
+        hitSlop={{left: 5, top: 5, right: 5, bottom: 5}}>
         {/* <SvgIcon source={'arrow'} /> */}
       </TouchableOpacity>
     </View>
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-end',
     backgroundColor: colors.greyCell,
-    width: '95%',
+    marginHorizontal: indent.s,
     alignSelf: 'center',
     margin: indent.s,
     paddingHorizontal: indent.xxs,
