@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {StackActions, useNavigation} from '@react-navigation/native';
-import React, {useCallback} from 'react';
+import React, {useCallback, useMemo} from 'react';
 import {
   ActivityIndicator,
   StyleSheet,
@@ -9,44 +8,41 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import NavigationKeys from '../navigation/NavigationKeys';
+import useUserCreation from '../hooks/useUserCreation';
+
 import colors from '../theme/colors';
 import {fontFamily, fontSize} from '../theme/fonts';
 import {borderRadius, indent} from '../theme/layout';
 
 const WelcomeScreen: React.FC = () => {
-  const [nickname, setNickname] = React.useState('');
-  const [loading, setLoading] = React.useState(false);
+  const [name, setName] = React.useState('');
 
-  const navigation = useNavigation();
+  const {isCreating, createUser} = useUserCreation();
+  const buttonDisabled = useMemo(() => !name || isCreating, [name, isCreating]);
 
-  const handleNicknameInput = useCallback((value: string) => {
-    setNickname(value);
+  const handleNameInput = useCallback((value: string) => {
+    setName(value);
   }, []);
 
-  const handleContinuePress = useCallback(() => {
-    setLoading(true);
-    // something is going here
-    navigation.dispatch(StackActions.replace(NavigationKeys.ChatsListScreen));
-    setLoading(false);
-  }, []);
+  const handleContinuePress = useCallback(() => createUser(name), [name]);
 
   return (
     <View style={styles.container}>
       <TextInput
-        value={nickname}
-        onChangeText={handleNicknameInput}
+        value={name}
+        onChangeText={handleNameInput}
         placeholder={'Enter your nickname...'}
         placeholderTextColor={colors.greyTertiary}
         style={styles.input}
         selectionColor={colors.label}
         cursorColor={colors.label}
+        editable={!isCreating}
       />
       <TouchableOpacity
-        style={[styles.continueButton, loading && styles.disabledButton]}
-        disabled={loading}
+        style={[styles.continueButton, buttonDisabled && styles.disabledButton]}
+        disabled={buttonDisabled}
         onPress={handleContinuePress}>
-        {loading ? (
+        {isCreating ? (
           <ActivityIndicator size={'small'} color={colors.background} />
         ) : (
           <Text style={styles.buttonLabel}>Continue</Text>
