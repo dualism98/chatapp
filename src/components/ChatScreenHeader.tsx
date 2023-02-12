@@ -1,13 +1,17 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
+
+import {rootStore} from '../store/RootStore';
 import colors from '../theme/colors';
 import {fontFamily, fontSize} from '../theme/fonts';
 
 interface Props {
-  chat: Chat;
+  chatId: string;
 }
 
-const ChatScreenHeader: React.FC<Props> = ({chat}) => {
+const ChatScreenHeader: React.FC<Props> = ({chatId}) => {
+  const chat = rootStore.chatsStore.chatById[chatId] ?? {};
+
   return (
     <View style={styles.container}>
       <View style={styles.avatarContainer}>

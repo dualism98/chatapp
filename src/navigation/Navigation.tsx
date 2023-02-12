@@ -58,7 +58,10 @@ const Navigation: React.FC = () => {
         <Stack.Screen
           options={({route}) => ({
             // eslint-disable-next-line react/no-unstable-nested-components
-            headerTitle: () => <ChatScreenHeader chat={route?.params?.chat} />,
+            headerTitle: () => (
+              //@ts-expect-error
+              <ChatScreenHeader chatId={route?.params?.chatId} />
+            ),
           })}
           name={NavigationKeys.ChatScreen}
           component={ChatScreen}

@@ -1,22 +1,27 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {useNavigation} from '@react-navigation/native';
+import {observer} from 'mobx-react-lite';
 import React, {useCallback} from 'react';
 import {Image, StyleSheet, Text, TouchableHighlight, View} from 'react-native';
+
 import NavigationKeys from '../navigation/NavigationKeys';
+import {rootStore} from '../store/RootStore';
 import colors from '../theme/colors';
 import {fontFamily, fontSize} from '../theme/fonts';
 import {indent} from '../theme/layout';
 
 interface Props {
-  chat: Chat;
+  chatId: string;
 }
 
-const ChatCard: React.FC<Props> = ({chat}) => {
+const ChatCard: React.FC<Props> = observer(({chatId}) => {
+  const chat = rootStore.chatsStore.chatById[chatId] ?? {};
+
   const navigation = useNavigation();
 
   const handleCardPress = useCallback(() => {
     // @ts-expect-error
-    navigation.navigate(NavigationKeys.ChatScreen, {chat});
+    navigation.navigate(NavigationKeys.ChatScreen, {chatId});
   }, []);
 
   return (
@@ -29,12 +34,12 @@ const ChatCard: React.FC<Props> = ({chat}) => {
           <Text numberOfLines={1} style={styles.nameTitle}>
             {chat.name}
           </Text>
-          <Text style={styles.lastMessageTitle}>{chat.lastMessage}</Text>
+          <Text style={styles.lastMessageTitle}>{chat?.lastMessage?.text}</Text>
         </View>
       </View>
     </TouchableHighlight>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {
