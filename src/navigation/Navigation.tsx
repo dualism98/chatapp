@@ -10,7 +10,6 @@ import ChatScreen from '../screens/ChatScreen';
 import colors from '../theme/colors';
 import {fontFamily} from '../theme/fonts';
 import ChatScreenHeader from '../components/ChatScreenHeader';
-import axiosInstance from '../services/api/axiosInstance';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,12 +18,7 @@ const Navigation: React.FC = () => {
 
   React.useEffect(() => {
     Keychain.getGenericPassword().then(res => {
-      if (res) {
-        axiosInstance.defaults.headers.authorization = res.password;
-        setIsLoggedIn(true);
-        return;
-      }
-      setIsLoggedIn(false);
+      setIsLoggedIn(!!res);
     });
   }, []);
 

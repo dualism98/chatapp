@@ -5,8 +5,7 @@ import * as Keychain from 'react-native-keychain';
 import Toast from 'react-native-toast-message';
 
 import NavigationKeys from '../navigation/NavigationKeys';
-import ApiService from '../services/api/Api.service';
-import axiosInstance from '../services/api/axiosInstance';
+import GRPCService from '../services/grpc/GRPC.service';
 
 const useUserCreation = () => {
   const [isCreating, setIsCreating] = React.useState(false);
@@ -15,10 +14,10 @@ const useUserCreation = () => {
 
   const createUser = useCallback(async (name: string) => {
     setIsCreating(true);
+
     try {
-      const user = await ApiService.userApiService.createUser(name);
-      await Keychain.setGenericPassword(user.name, user._id);
-      axiosInstance.defaults.headers.authorization = user._id;
+      const user = await GRPCService.chatsGRPCService.createUser(name);
+      await Keychain.setGenericPassword(user.name, user.id);
       navigation.dispatch(StackActions.replace(NavigationKeys.ChatsListScreen));
     } catch (err) {
       Toast.show({

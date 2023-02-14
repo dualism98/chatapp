@@ -34,7 +34,11 @@ const ChatCard: React.FC<Props> = observer(({chatId}) => {
           <Text numberOfLines={1} style={styles.nameTitle}>
             {chat.name}
           </Text>
-          <Text style={styles.lastMessageTitle}>{chat?.lastMessage?.text}</Text>
+          {chat.lastMessage ? (
+            <Text style={styles.lastMessageTitle}>{chat.lastMessage.text}</Text>
+          ) : (
+            <Text style={[styles.lastMessageTitle, styles.noMessagesTitle]}>No messages</Text>
+          )}
         </View>
       </View>
     </TouchableHighlight>
@@ -70,6 +74,10 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.regular,
     color: colors.greySecondary,
     fontSize: fontSize.m,
+  },
+
+  noMessagesTitle: {
+    color: colors.greyTertiary,
   },
 });
 

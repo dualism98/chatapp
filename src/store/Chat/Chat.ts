@@ -1,13 +1,13 @@
 import {makeAutoObservable} from 'mobx';
 
 class Chat {
-  _id: string;
+  id: string;
   name: string;
   avatar?: string;
   lastMessage: MessageEntity;
 
   constructor(chat: ChatEntity) {
-    this._id = chat._id;
+    this.id = chat.id;
     this.avatar = chat.avatar;
     this.name = chat.name;
     this.lastMessage = chat.lastMessage;

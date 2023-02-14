@@ -10,8 +10,11 @@
     "test": "jest"
   },
   "dependencies": {
+    "@mitch528/react-native-grpc": "^0.1.10",
+    "@protobuf-ts/runtime-rpc": "^2.8.2",
     "@react-navigation/native": "^6.1.3",
     "@react-navigation/native-stack": "^6.9.9",
+    "abort-controller": "^3.0.0",
     "axios": "^1.3.2",
     "google-protobuf": "^3.21.2",
     "grpc-web": "^1.4.2",
