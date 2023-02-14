@@ -2,13 +2,17 @@
 syntax = "proto3";
 
 message ChatMessage {
-    string _id = 1;
+    optional string _id = 1;
     string from = 2;
     string to = 3;
     string type = 4;
     optional string text = 5;
     optional string src = 6;
     string date = 7;
+}
+
+message MessagesList {
+    repeated ChatMessage messages = 1;
 }
 
 message User {
@@ -32,15 +36,29 @@ message CreateUserReq {
     string name = 1;
 }
 
+
 message UserReq {
     string userId = 1;
 }
 
+message MessageHistoryReq {
+    string userId = 1;
+    string chatId = 2;
+}
+
+message SendMessageReq {
+    string userId = 1;
+    ChatMessage message = 2;
+}
+
 message ReceiveMsgRequest {
-    string user = 1;
+    string userId = 1;
 }
 
 service ChatService {
     rpc createUser(CreateUserReq) returns (User) {}
     rpc getAllChats(UserReq) returns (ChatList) {}
+    rpc getMessagesHistory(MessageHistoryReq) returns (MessagesList) {}
+    rpc sendMessage(ChatMessage) returns (Empty) {}
+    rpc receiveMessages(UserReq) returns (stream ChatMessage) {}
 }

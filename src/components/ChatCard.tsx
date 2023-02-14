@@ -37,7 +37,9 @@ const ChatCard: React.FC<Props> = observer(({chatId}) => {
           {chat.lastMessage ? (
             <Text style={styles.lastMessageTitle}>{chat.lastMessage.text}</Text>
           ) : (
-            <Text style={[styles.lastMessageTitle, styles.noMessagesTitle]}>No messages</Text>
+            <Text style={[styles.lastMessageTitle, styles.noMessagesTitle]}>
+              No messages
+            </Text>
           )}
         </View>
       </View>
