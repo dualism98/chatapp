@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import {launchImageLibrary} from 'react-native-image-picker';
 
 import {rootStore} from '../store/RootStore';
@@ -17,6 +18,8 @@ import {indent} from '../theme/layout';
 interface Props {
   chatId: string;
 }
+
+const audioRecorder = new AudioRecorderPlayer();
 
 const MessageInput: React.FC<Props> = ({chatId}) => {
   const [text, setText] = React.useState('');
@@ -39,6 +42,20 @@ const MessageInput: React.FC<Props> = ({chatId}) => {
     } catch (err) {
       console.error('Error of getting video from library', err);
     }
+  }, []);
+
+  const handleRecordStart = useCallback(async () => {
+    await audioRecorder.startRecorder();
+    audioRecorder.addRecordBackListener(e => {
+      console.log(e.currentPosition);
+      return;
+    });
+  }, []);
+
+  const handleRecordStop = useCallback(async () => {
+    const res = await audioRecorder.stopRecorder();
+    audioRecorder.removeRecordBackListener();
+    console.log(res);
   }, []);
 
   return (
@@ -66,6 +83,14 @@ const MessageInput: React.FC<Props> = ({chatId}) => {
         <Image
           source={require('../assets/images/arrow.png')}
           style={styles.sendArrow}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPressIn={handleRecordStart}
+        onPressOut={handleRecordStop}>
+        <Image
+          source={require('../assets/images/microphone.png')}
+          style={styles.microphoneIcon}
         />
       </TouchableOpacity>
     </View>
@@ -115,6 +140,14 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     resizeMode: 'contain',
+  },
+
+  microphoneIcon: {
+    height: 32,
+    width: 24,
+    marginHorizontal: indent.xxs,
+    resizeMode: 'contain',
+    marginVertical: indent.xxs,
   },
 });
 
