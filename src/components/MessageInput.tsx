@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {launchImageLibrary} from 'react-native-image-picker';
 
 import {rootStore} from '../store/RootStore';
 import colors from '../theme/colors';
@@ -27,8 +28,27 @@ const MessageInput: React.FC<Props> = ({chatId}) => {
     textInputRef?.current?.clear();
   }, [text]);
 
+  const handleAttachPress = useCallback(async () => {
+    try {
+      const res = await launchImageLibrary({
+        mediaType: 'video',
+      });
+      if (res) {
+        console.log(res);
+      }
+    } catch (err) {
+      console.error('Error of getting video from library', err);
+    }
+  }, []);
+
   return (
     <View style={styles.container}>
+      <TouchableOpacity onPress={handleAttachPress}>
+        <Image
+          source={require('../assets/images/attach.png')}
+          style={styles.attachIcon}
+        />
+      </TouchableOpacity>
       <TextInput
         ref={textInputRef}
         value={text}
@@ -62,6 +82,13 @@ const styles = StyleSheet.create({
     margin: indent.s,
     paddingHorizontal: indent.xxs,
     borderRadius: 20,
+  },
+
+  attachIcon: {
+    height: 32,
+    width: 24,
+    resizeMode: 'contain',
+    marginVertical: indent.xxs,
   },
 
   input: {

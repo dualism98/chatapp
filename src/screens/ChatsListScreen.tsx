@@ -19,7 +19,6 @@ const ChatsListScreen: React.FC = observer(() => {
   }, []);
 
   const loadChats = useCallback(async () => {
-    console.log('Here');
     setLoading(true);
     await rootStore.chatsStore.loadChats();
     setLoading(false);
