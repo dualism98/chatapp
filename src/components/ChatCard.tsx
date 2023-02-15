@@ -34,13 +34,6 @@ const ChatCard: React.FC<Props> = observer(({chatId}) => {
           <Text numberOfLines={1} style={styles.nameTitle}>
             {chat.name}
           </Text>
-          {chat.lastMessage ? (
-            <Text style={styles.lastMessageTitle}>{chat.lastMessage.text}</Text>
-          ) : (
-            <Text style={[styles.lastMessageTitle, styles.noMessagesTitle]}>
-              No messages
-            </Text>
-          )}
         </View>
       </View>
     </TouchableHighlight>

@@ -2,7 +2,7 @@ import {GrpcClient} from '@mitch528/react-native-grpc';
 import ChatsGRPCService from './ChatsGRPC.service';
 import MessagesGRPCService from './MessagesGRPC.service';
 
-const HOST = '0.0.0.0:9090';
+const HOST = '45.138.25.10:9090';
 
 class GRPCService {
   chatsGRPCService: ChatsGRPCService;
