@@ -1,6 +1,6 @@
 import {GrpcClient, GrpcMetadata} from '@mitch528/react-native-grpc';
-import * as Keychain from 'react-native-keychain';
-import { rootStore } from '../../store/RootStore';
+
+import {rootStore} from '../../store/RootStore';
 const {
   MessageHistoryReq,
   MessagesList,
@@ -11,9 +11,9 @@ const {
 class MessagesGRPCService {
   async loadMessagesHistory(chatId: string): Promise<MessageEntity[]> {
     try {
-      const user = await Keychain.getGenericPassword();
+      const userId = rootStore.userStore.userId;
       const request = new MessageHistoryReq();
-      request.setUserid(user.password);
+      request.setUserid(userId);
       request.setChatid(chatId);
       const data: Uint8Array = request.serializeBinary();
       const headers: GrpcMetadata = {};
@@ -48,9 +48,9 @@ class MessagesGRPCService {
   }
 
   async receiveMessages() {
-    const user = await Keychain.getGenericPassword();
+    const userId = rootStore.userStore.userId;
     const request = new UserReq();
-    request.setUserid(user.password);
+    request.setUserid(userId);
     const data: Uint8Array = request.serializeBinary();
     const headers: GrpcMetadata = {};
     const stream = GrpcClient.serverStreamCall(
@@ -59,8 +59,8 @@ class MessagesGRPCService {
       headers,
     );
 
-    stream.responses.on('data', data => {
-      const message = new ChatMessage.deserializeBinary(data);
+    stream.responses.on('data', response => {
+      const message = new ChatMessage.deserializeBinary(response);
       rootStore.messagesStore.addMessage(message.toObject());
     });
   }

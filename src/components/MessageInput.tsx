@@ -1,11 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useCallback } from 'react';
-import {StyleSheet, TextInput, TouchableOpacity, View} from 'react-native';
-import { rootStore } from '../store/RootStore';
+import React, {useCallback} from 'react';
+import {
+  Image,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+
+import {rootStore} from '../store/RootStore';
 import colors from '../theme/colors';
 import {fontFamily, fontSize} from '../theme/fonts';
 import {indent} from '../theme/layout';
-import SvgIcon from './ui/SvgIcon';
 
 interface Props {
   chatId: string;
@@ -37,7 +43,10 @@ const MessageInput: React.FC<Props> = ({chatId}) => {
         style={styles.sendButton}
         onPress={handleSendMessage}
         hitSlop={{left: 5, top: 5, right: 5, bottom: 5}}>
-        {/* <SvgIcon source={'arrow'} /> */}
+        <Image
+          source={require('../assets/images/arrow.png')}
+          style={styles.sendArrow}
+        />
       </TouchableOpacity>
     </View>
   );
@@ -70,8 +79,15 @@ const styles = StyleSheet.create({
     height: 32,
     width: 32,
     marginVertical: indent.xxs,
+    padding: indent.xs,
     borderRadius: 100,
     backgroundColor: colors.primary,
+  },
+
+  sendArrow: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain',
   },
 });
 

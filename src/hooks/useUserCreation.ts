@@ -6,6 +6,7 @@ import Toast from 'react-native-toast-message';
 
 import NavigationKeys from '../navigation/NavigationKeys';
 import GRPCService from '../services/grpc/GRPC.service';
+import {rootStore} from '../store/RootStore';
 
 const useUserCreation = () => {
   const [isCreating, setIsCreating] = React.useState(false);
@@ -18,6 +19,7 @@ const useUserCreation = () => {
     try {
       const user = await GRPCService.chatsGRPCService.createUser(name);
       await Keychain.setGenericPassword(user.name, user.id);
+      rootStore.userStore.login(user.name, user.id);
       navigation.dispatch(StackActions.replace(NavigationKeys.ChatsListScreen));
     } catch (err) {
       Toast.show({

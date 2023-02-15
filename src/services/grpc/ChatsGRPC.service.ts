@@ -1,5 +1,6 @@
-import * as Keychain from 'react-native-keychain';
 import {GrpcClient, GrpcMetadata} from '@mitch528/react-native-grpc';
+
+import {rootStore} from '../../store/RootStore';
 
 const {CreateUserReq, User, UserReq, ChatList} = require('../../proto/chat_pb');
 
@@ -25,9 +26,9 @@ class ChatsGRPCService {
 
   async getAllChats(): Promise<ChatEntity[]> {
     try {
-      const user = await Keychain.getGenericPassword();
+      const userId = rootStore.userStore.userId;
       const request = new UserReq();
-      request.setUserid(user.password);
+      request.setUserid(userId);
       const data: Uint8Array = request.serializeBinary();
       const headers: GrpcMetadata = {};
       const {response} = await GrpcClient.unaryCall(

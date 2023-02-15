@@ -7,7 +7,6 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import Message from '../components/Message';
 import MessageInput from '../components/MessageInput';
-import GRPCService from '../services/grpc/GRPC.service';
 import {rootStore} from '../store/RootStore';
 import colors from '../theme/colors';
 import {indent} from '../theme/layout';
@@ -24,7 +23,6 @@ const ChatScreen: React.FC<Props> = observer(({route}) => {
 
   React.useEffect(() => {
     loadChatMessages();
-    GRPCService.messagesGRPCService.receiveMessages();
   }, []);
 
   const loadChatMessages = useCallback(() => {
