@@ -33,8 +33,8 @@ const MessageInput: React.FC<Props> = ({chatId}) => {
       const res = await launchImageLibrary({
         mediaType: 'video',
       });
-      if (res) {
-        console.log(res);
+      if (res && res.assets && res.assets.length > 0) {
+        rootStore.messagesStore.sendVideoMessage(res.assets[0], chatId);
       }
     } catch (err) {
       console.error('Error of getting video from library', err);

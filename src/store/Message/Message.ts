@@ -7,6 +7,7 @@ class Message {
   from: string;
   type: string;
   text?: string;
+  src?: string;
   date: Date;
   status: MessageStatus;
 
@@ -18,6 +19,7 @@ class Message {
     this.from = messageEntity.from;
     this.type = messageEntity.type;
     this.text = messageEntity.text;
+    this.src = messageEntity.src ?? '';
     this.date = new Date(messageEntity.date);
     this.status = messageEntity.status ?? 'sent';
 

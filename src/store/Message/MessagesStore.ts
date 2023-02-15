@@ -1,5 +1,7 @@
 import {makeAutoObservable, runInAction} from 'mobx';
+import {Asset} from 'react-native-image-picker';
 import * as Keychain from 'react-native-keychain';
+import ApiService from '../../services/api/Api.service';
 
 import GRPCService from '../../services/grpc/GRPC.service';
 import {RootStore} from '../RootStore';
@@ -49,16 +51,32 @@ class MessagesStore {
 
   async sendTextMessage(text: string, chatId: string) {
     const user = await Keychain.getGenericPassword();
+    const date = new Date().toString();
     const message: MessageEntity = {
-      id: new Date().toString(),
+      id: date,
       to: chatId,
       from: user.password,
       type: 'text',
       text,
-      date: new Date().toString(),
+      date,
     };
     this.addMessage(message);
     await GRPCService.messagesGRPCService.sendMessage(message);
+  }
+
+  async sendVideoMessage(video: Asset, chatId: string) {
+    const user = await Keychain.getGenericPassword();
+    const date = new Date().toString();
+    const message: MessageEntity = {
+      id: date,
+      to: chatId,
+      from: user.password,
+      type: 'video',
+      src: video.uri,
+      date,
+    };
+    ApiService.apiUploadService.uploadVideo(video, chatId, user.password);
+    this.addMessage(message);
   }
 
   addMessage(message: MessageEntity) {

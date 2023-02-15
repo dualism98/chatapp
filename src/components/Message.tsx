@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {observer} from 'mobx-react-lite';
-import React, {useMemo} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, {useCallback, useMemo} from 'react';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
+import Video from 'react-native-video';
 
 import {rootStore} from '../store/RootStore';
 import colors from '../theme/colors';
@@ -15,19 +16,53 @@ interface Props {
 const Message: React.FC<Props> = observer(({messageId}) => {
   const message = rootStore.messagesStore.messageById[messageId];
   const isUserMessage = useMemo(
-    () => message.from === '63eb3189bd5824de8d5fc502',
+    () => message.from === rootStore.userStore.userId,
     [],
   );
 
-  return (
-    <View
-      style={[styles.container, isUserMessage && styles.userMessageContainer]}>
-      <Text
-        style={[styles.messageText, isUserMessage && styles.userMessageText]}>
-        {message.text}
-      </Text>
-    </View>
+  const videoRef = React.useRef<Video>(null);
+
+  const handleVideoPress = useCallback(
+    () => videoRef.current?.presentFullscreenPlayer(),
+    [],
   );
+
+  switch (message.type) {
+    case 'text':
+      return (
+        <View
+          style={[
+            styles.container,
+            isUserMessage && styles.userMessageContainer,
+          ]}>
+          <Text
+            style={[
+              styles.messageText,
+              isUserMessage && styles.userMessageText,
+            ]}>
+            {message.text}
+          </Text>
+        </View>
+      );
+
+    case 'video':
+      console.log('VIDEO', message.src);
+      return (
+        <Pressable
+          onPress={handleVideoPress}
+          style={{alignSelf: isUserMessage ? 'flex-end' : 'flex-start'}}>
+          <Video
+            ref={videoRef}
+            source={{uri: message.src}}
+            style={{width: 160, height: 90, alignSelf: 'flex-end'}}
+            resizeMode={'contain'}
+          />
+        </Pressable>
+      );
+
+    default:
+      return null;
+  }
 });
 
 const styles = StyleSheet.create({
