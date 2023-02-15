@@ -47,7 +47,7 @@ const MessageInput: React.FC<Props> = ({chatId}) => {
   const handleRecordStart = useCallback(async () => {
     await audioRecorder.startRecorder();
     audioRecorder.addRecordBackListener(e => {
-      console.log(e.currentPosition);
+      // console.log(e.currentPosition);
       return;
     });
   }, []);
