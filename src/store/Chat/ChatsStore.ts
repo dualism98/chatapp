@@ -30,7 +30,6 @@ class ChatsStore {
 
   async loadChats() {
     const chats = await GRPCService.chatsGRPCService.getAllChats();
-    console.log('Chats', chats);
     runInAction(() => {
       this.chats = chats.map(chat => new Chat(chat));
     });

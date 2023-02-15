@@ -28,7 +28,6 @@ class ChatsGRPCService {
       const user = await Keychain.getGenericPassword();
       const request = new UserReq();
       request.setUserid(user.password);
-      console.log('Request', request);
       const data: Uint8Array = request.serializeBinary();
       const headers: GrpcMetadata = {};
       const {response} = await GrpcClient.unaryCall(

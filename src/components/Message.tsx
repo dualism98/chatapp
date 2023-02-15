@@ -1,16 +1,23 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import {observer} from 'mobx-react-lite';
 import React, {useMemo} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+
+import {rootStore} from '../store/RootStore';
 import colors from '../theme/colors';
 import {fontFamily, fontSize} from '../theme/fonts';
 import {borderRadius, indent} from '../theme/layout';
 
 interface Props {
-  message: Message;
+  messageId: string;
 }
 
-const Message: React.FC<Props> = ({message}) => {
-  const isUserMessage = useMemo(() => message.from === 'me', []);
+const Message: React.FC<Props> = observer(({messageId}) => {
+  const message = rootStore.messagesStore.messageById[messageId];
+  const isUserMessage = useMemo(
+    () => message.from === '63eb3189bd5824de8d5fc502',
+    [],
+  );
 
   return (
     <View
@@ -21,7 +28,7 @@ const Message: React.FC<Props> = ({message}) => {
       </Text>
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {
