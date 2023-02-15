@@ -5,7 +5,7 @@ import React, {useCallback} from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
-import Message from '../components/Message';
+import Message from '../components/message/Message';
 import MessageInput from '../components/MessageInput';
 import {rootStore} from '../store/RootStore';
 import colors from '../theme/colors';

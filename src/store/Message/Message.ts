@@ -35,6 +35,10 @@ class Message {
   setId(id: string) {
     this.id = id;
   }
+
+  setSrc(src: string) {
+    this.src = src;
+  }
 }
 
 export default Message;

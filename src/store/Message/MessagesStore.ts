@@ -1,8 +1,8 @@
 import {makeAutoObservable, runInAction} from 'mobx';
 import {Asset} from 'react-native-image-picker';
 import * as Keychain from 'react-native-keychain';
-import ApiService from '../../services/api/Api.service';
 
+import ApiService from '../../services/api/Api.service';
 import GRPCService from '../../services/grpc/GRPC.service';
 import {RootStore} from '../RootStore';
 import Message from './Message';
@@ -77,6 +77,29 @@ class MessagesStore {
     };
     ApiService.apiUploadService.uploadVideo(video, chatId, user.password);
     this.addMessage(message);
+  }
+
+  async sendAudioMessage(path: string, chatId: string) {
+    const user = await Keychain.getGenericPassword();
+    const date = new Date().toString();
+    const messageEntity: MessageEntity = {
+      id: date,
+      to: chatId,
+      from: user.password,
+      type: 'audio',
+      src: '',
+      date,
+    };
+    const message = new Message(this.rootStore, messageEntity);
+    runInAction(() => {
+      this.messages.unshift(message);
+    });
+    const uploadData = await ApiService.apiUploadService.uploadAudio(
+      path,
+      chatId,
+      user.password,
+    );
+    message.setSrc(uploadData.src);
   }
 
   addMessage(message: MessageEntity) {

@@ -55,7 +55,7 @@ const MessageInput: React.FC<Props> = ({chatId}) => {
   const handleRecordStop = useCallback(async () => {
     const res = await audioRecorder.stopRecorder();
     audioRecorder.removeRecordBackListener();
-    console.log(res);
+    rootStore.messagesStore.sendAudioMessage(res, chatId);
   }, []);
 
   return (
